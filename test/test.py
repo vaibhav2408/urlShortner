@@ -1,28 +1,30 @@
+import unittest
+
 from url_shortner import UrlShorten
 from utils.config_utils import ConfigUtils as my_util
 
-if __name__ == "__main__":
-    urlShorten = UrlShorten()
 
-    test_file_path = 'test_links.txt'
+class TestStringMethods(unittest.TestCase):
+    def test_url_shortening_with_file_as_input(self):
+        url_shorten = UrlShorten()
 
-    print('\n\nRunning test for file as input - \n')
+        test_file_path = 'test_links.txt'
 
-    print('Given input is a file')
-    content = my_util.read_file(test_file_path)
-    index = 1
-    for url in content:
-        short_url = urlShorten.shorten_url(url)
-        print('Short url : ', short_url)
-        original_url = urlShorten.redirect(short_url)
-        print('Re-directing to : ', original_url)
-        index += 1
+        content = my_util.read_file(test_file_path)
 
-    print('\n\nRunning test for URL as input - \n')
+        for url in content:
+            short_url = url_shorten.shorten_url(url)
+            original_url = url_shorten.redirect(short_url)
+            self.assertTrue(url, original_url)
 
-    test_url = 'https://docs.python.org/3/howto/argparse.html'
-    print('Given input is a URL')
-    short_url = urlShorten.shorten_url(test_url)
-    print('Short url : ', short_url)
-    original_url = urlShorten.redirect(short_url)
-    print('Re-directing to : ', original_url)
+    def test_url_shortening_with_url_as_input(self):
+        url_shorten = UrlShorten()
+
+        test_url = 'https://docs.python.org/3/howto/argparse.html'
+        short_url = url_shorten.shorten_url(test_url)
+        original_url = url_shorten.redirect(short_url)
+        self.assertTrue(test_url, original_url)
+
+
+if __name__ == '__main__':
+    unittest.main()

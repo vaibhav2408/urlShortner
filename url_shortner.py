@@ -112,8 +112,6 @@ class UrlShorten:
             original_url = self.redirect(short_url)
             logger.info('Re-directing to : {url}'.format(url=original_url))
 
-            # urlShorten.print_all()
-
     def shorten_url(self, original_url):
         url = str_encode(original_url)
         if urlparse(url).scheme == '':
@@ -162,10 +160,10 @@ class UrlShorten:
 
 
 if __name__ == "__main__":
-    urlShorten = UrlShorten()
+    url_shorten = UrlShorten()
 
     parser = argparse.ArgumentParser()
     parser.add_argument("input")
     args = parser.parse_args()
     user_input = args.input
-    urlShorten.shorten(user_input)
+    url_shorten.shorten(user_input)
