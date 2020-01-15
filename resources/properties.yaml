@@ -1,0 +1,13 @@
+log_file_directory: '/tmp/teikametrics/logs/'
+
+# Defines the max number of characters in a short url at a given time.
+present_size_of_url_string: 1
+
+#Defines the upper limit of characters in the shortened URL at any time.
+max_allowed_number_characters_in_short_url: 6
+
+table_name: WEB_URL
+
+database: urls.db
+
+hostname: sho.rt/
